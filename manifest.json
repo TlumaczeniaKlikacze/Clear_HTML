@@ -1,0 +1,17 @@
+{
+  "name": "TagoEX",
+  "description": "TagoEX czyści złe tagi",
+  "version": "1.0",
+  "permissions": ["https://zooart6.yourtechnicaldomain.com/panel/product.php*", "tabs"],
+  "manifest_version": 2, 
+  "icons": {},
+  "browser_action": {   
+    "default_popup": "popup.html"  
+  }, 
+  "content_scripts": [  
+    {  
+        "matches": [ "https://zooart6.yourtechnicaldomain.com/panel/product.php*" ],  
+       "js": ["js.js"]  
+        }  
+    ]  
+}
