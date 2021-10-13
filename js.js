@@ -24,7 +24,6 @@ const tags = ['span','div','h1','h2','h3','h4','h5','h6','section','article','as
     console.log(splitet_text)
     for(let _=0;_<splitet_text.length;_++){
         if(_==splitet_text.length-1){
-            console.log(splitet_text[_].split(">")[1])
             ready_text +=`<${splitet_text[_]}` 
         }else if(_!=splitet_text.length-1){
             tmp = splitet_text[_].split(">")
