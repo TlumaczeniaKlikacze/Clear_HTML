@@ -21,7 +21,6 @@ const tags = ['span','div','h1','h2','h3','h4','h5','h6','section','article','as
     let tmp2
     let splitet_text = text.split('<')
     ready_text += splitet_text[0]
-    console.log(splitet_text)
     for(let _=0;_<splitet_text.length;_++){
         if(_==splitet_text.length-1){
             ready_text +=`<${splitet_text[_]}` 
