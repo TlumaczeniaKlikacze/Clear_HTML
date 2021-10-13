@@ -20,37 +20,44 @@ const tags = ['span','div','h1','h2','h3','h4','h5','h6','section','article','as
     let tmp;
     let tmp2
     let splitet_text = text.split('<')
-    ready_text = splitet_text[0]
+    ready_text += splitet_text[0]
+    console.log(splitet_text)
     for(let _=0;_<splitet_text.length;_++){
-        tmp = splitet_text[_].split(">")
-        tmp2= tmp[0].split(' ')
-        if(tmp[1] != undefined){
-            for(let __ =0;__<tags.length;__++){
-                if(tmp2[0] == tags[__] || tmp2[0] == `/${tags[__]}`){
-                    if(tmp[1].trim() != undefined){
-                        if(tmp2[0] == "h1" || tmp2[0] == "h2"|| tmp2[0] == "h3" || tmp2[0] == "h4" || tmp2[0] == "h5"|| tmp2[0] == "h6"){
-                            console.log(tmp2[0])
-                            ready_text +=`<strong>${tmp[1].trim()}`
-                        }else if(tmp2[0] == "/h1" || tmp2[0] == "/h2"|| tmp2[0] == "/h3" || tmp2[0] == "/h4" || tmp2[0] == "/h5"|| tmp2[0] == "/h6"){
-                            ready_text +=`</strong>${tmp[1].trim()}`
-                        }else{
-                            ready_text +=tmp[1].trim()
+        if(_==splitet_text.length-1){
+            console.log(splitet_text[_].split(">")[1])
+            ready_text +=`<${splitet_text[_]}` 
+        }else if(_!=splitet_text.length-1){
+            tmp = splitet_text[_].split(">")
+            tmp2= tmp[0].split(' ')
+            if(tmp[1] != undefined){
+                for(let __ =0;__<tags.length;__++){
+                    if(tmp2[0] == tags[__] || tmp2[0] == `/${tags[__]}`){
+                        if(tmp[1].trim() != undefined){
+                            if(tmp2[0] == "h1" || tmp2[0] == "h2"|| tmp2[0] == "h3" || tmp2[0] == "h4" || tmp2[0] == "h5"|| tmp2[0] == "h6"){
+                                console.log(tmp2[0])
+                                ready_text +=`<strong>${tmp[1].trim()}`
+                            }else if(tmp2[0] == "/h1" || tmp2[0] == "/h2"|| tmp2[0] == "/h3" || tmp2[0] == "/h4" || tmp2[0] == "/h5"|| tmp2[0] == "/h6"){
+                                ready_text +=`</strong>${tmp[1].trim()}`
+                            }else{
+                                ready_text +=tmp[1].trim()
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
-            }
-            for(let ___=0;___<good_tags.length;___++){
-                if(tmp2[0] == good_tags[___] || tmp2[0] == `/${good_tags[___]}`){
-                   if(tmp2[0][0] == '/'){
-                    ready_text += `${tmp[1]}<${tmp2[0].trim()}>`
-                   }else{
-                    ready_text += `<${tmp2[0]}>${tmp[1].trim()}`
-                   }
-                    break;
+                for(let ___=0;___<good_tags.length;___++){
+                    if(tmp2[0] == good_tags[___] || tmp2[0] == `/${good_tags[___]}`){
+                       if(tmp2[0][0] == '/'){
+                        ready_text += `${tmp[1]}<${tmp2[0].trim()}>`
+                       }else{
+                        ready_text += `<${tmp2[0]}>${tmp[1].trim()}`
+                       }
+                        break;
+                    }
                 }
             }
         }
+       
     }
     let p = new RegExp(/<p>\s{1,}<[/]p>/g)
     let strong =  new RegExp(/<strong>\s{1,}<[/]strong>/g)
