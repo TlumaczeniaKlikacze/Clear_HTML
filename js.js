@@ -20,6 +20,7 @@ const tags = ['span','div','h1','h2','h3','h4','h5','h6','section','article','as
     let tmp;
     let tmp2
     let splitet_text = text.split('<')
+    ready_text = splitet_text[0]
     for(let _=0;_<splitet_text.length;_++){
         tmp = splitet_text[_].split(">")
         tmp2= tmp[0].split(' ')
